@@ -1,25 +1,109 @@
 return {
-  {
-    "stevearc/conform.nvim",
-    -- event = 'BufWritePre', -- uncomment for format on save
-    opts = require "configs.conform",
-  },
+    -- using lazy.nvim
+    {
+        "S1M0N38/love2d.nvim",
+        cmd = "LoveRun",
+        opts = {},
+        keys = {
+            { "<leader>v", ft = "lua", desc = "LÖVE" },
+            { "<leader>vv", "<cmd>LoveRun<cr>", ft = "lua", desc = "Run LÖVE" },
+            { "<leader>vs", "<cmd>LoveStop<cr>", ft = "lua", desc = "Stop LÖVE" },
+        },
+    },
+    {
+        "stevearc/conform.nvim",
+        event = "BufWritePre", -- uncomment for format on save
+        opts = require "configs.conform",
+    },
 
-  -- These are some examples, uncomment them if you want to see them work!
-  {
-    "neovim/nvim-lspconfig",
-    config = function()
-      require "configs.lspconfig"
-    end,
-  },
+    -- These are some examples, uncomment them if you want to see them work!
+    {
+        "neovim/nvim-lspconfig",
+        config = function()
+            require "configs.lspconfig"
+        end,
+    },
 
-  -- {
-  -- 	"nvim-treesitter/nvim-treesitter",
-  -- 	opts = {
-  -- 		ensure_installed = {
-  -- 			"vim", "lua", "vimdoc",
-  --      "html", "css"
-  -- 		},
-  -- 	},
-  -- },
+    {
+        "williamboman/mason.nvim",
+        opts = {
+            ensure_installed = {
+                "typescript-language-server",
+                "rust-analyzer",
+                "graphql-language-service-cli",
+                "eslint-lsp",
+            },
+        },
+    },
+
+    {
+        "nvim-tree/nvim-tree.lua",
+        opts = {
+            view = {
+                side = "left",
+                width = function()
+                    return vim.o.columns
+                end,
+                float = {
+                    enable = true,
+                    open_win_config = function()
+                        return {
+                            relative = "editor",
+                            border = "none",
+                            width = vim.o.columns,
+                            height = vim.o.lines - 2,
+                            row = 0,
+                            col = 0,
+                        }
+                    end,
+                },
+            },
+            filters = {},
+            actions = {
+                open_file = {
+                    quit_on_open = true, -- Close tree after opening file
+                },
+            },
+        },
+    },
+
+    {
+        "nvim-treesitter/nvim-treesitter",
+        opts = {
+            ensure_installed = {
+                "vim",
+                "lua",
+                "vimdoc",
+                "html",
+                "css",
+                "typescript",
+                "rust",
+                "graphql",
+            },
+        },
+    },
+
+    -- {
+    --     "catppuccin/nvim",
+    --     dependencies = {
+    --         "nvim-tree.lua",
+    --         "nvim-treesitter",
+    --         "nvim-cmp",
+    --         "telescope.nvim"
+    --     },
+    --     name = "catppuccin",
+    --     priority = 1000,
+    --     opts = {
+    --         flavour = "latte",
+    --         integrations = {
+    --             cmp = true,
+    --             nvimtree = true,
+    --             treesitter = true,
+    --             telescope = {
+    --                 enabled = true,
+    --                 style = "nvchad"
+    --             },
+    --         },
+    --     },
+    -- },
 }
