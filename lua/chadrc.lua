@@ -62,17 +62,6 @@ return {
     ui = {
         tabufline = {
             enabled = false,
-            order = {
-                "tabs",
-                "buffers",
-                "modlin",
-            },
-            modules = {
-                modlin = function()
-                    return "An environment of Modlin Inc."
-                end,
-            },
-            lazyload = false,
         },
         statusline = {
             theme = "vscode_colored",
