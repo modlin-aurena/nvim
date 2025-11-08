@@ -41,9 +41,6 @@ return {
         opts = {
             view = {
                 side = "left",
-                ignored_files = {
-                    ".git",
-                },
                 width = function()
                     return vim.o.columns
                 end,
@@ -61,7 +58,6 @@ return {
                     end,
                 },
             },
-            filters = {},
             actions = {
                 open_file = {
                     quit_on_open = true, -- Close tree after opening file
